@@ -133,10 +133,12 @@ class Instagram {
    * Get user activity feed
    *
    * @param integer [optional] $limit     Limit of returned results
+   * @param integer [optional] $min_id    Return media later than the pic with this ID
+   * @param integer [optional] $max_id    Return media earlier than the pic with this ID
    * @return mixed
    */
-  public function getUserFeed($limit = 0) {
-    return $this->_makeCall('users/self/feed', true, array('count' => $limit));
+  public function getUserFeed($limit = 0, $min_id = null, $max_id = null) {
+    return $this->_makeCall('users/self/feed', true, array('count' => $limit, 'min_id' => $min_id, 'max_id' => $max_id));
   }
 
   /**
@@ -144,10 +146,12 @@ class Instagram {
    *
    * @param integer [optional] $id        Instagram user id
    * @param integer [optional] $limit     Limit of returned results
+   * @param integer [optional] $min_id    Return media later than the pic with this ID
+   * @param integer [optional] $max_id    Return media earlier than the pic with this ID
    * @return mixed
    */
-  public function getUserMedia($id = 'self', $limit = 0) {
-    return $this->_makeCall('users/' . $id . '/media/recent', true, array('count' => $limit));
+  public function getUserMedia($id = 'self', $limit = 0, $min_id = null, $max_id = null) {
+    return $this->_makeCall('users/' . $id . '/media/recent', true, array('count' => $limit, 'min_id' => $min_id, 'max_id' => $max_id));
   }
 
   /**
